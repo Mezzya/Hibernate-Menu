@@ -18,9 +18,10 @@ public class Main {
         em.getTransaction().begin();
         Menu m1 = new Menu("Шашлык",120,500,false);
         Menu m2 = new Menu("Борщ", 50,200,true);
-
+        Menu m3 = new Menu("Суп", 50,200,true);
         em.persist(m1);
         em.persist(m2);
+        em.persist(m3);
         em.getTransaction().commit();
 
         System.out.println("Cool");
