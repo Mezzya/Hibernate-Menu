@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+    <servlet-name>ViewMenu</servlet-name>
+    <servlet-class>ua.com.e2k.ViewMenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewMenu</servlet-name>
+    <url-pattern>/menu</url-pattern>
+  </servlet-mapping>
 </web-app>

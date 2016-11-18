@@ -17,6 +17,9 @@ public class Menu {
     private int weight;
     private boolean discount;
 
+    public Menu() {
+    }
+
     public Menu(String name, int price, int weight, boolean discount) {
         this.name = name;
         this.price = price;
