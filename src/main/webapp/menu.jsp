@@ -1,5 +1,6 @@
 
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ page contentType="text/html;charset=utf-8" %>
 
@@ -18,18 +19,19 @@
 <div class="container">
     <div class="my_body">
         <h2>Menu resstoran</h2>
-        <p>Hello ${name}</p>
+        <p>Hello</p>
 
         <table class="table table-striped">
             <thead>
             <th>#</th>
-            <th>Дисконт</th>
             <th>Название</th>
+            <th>Дисконт</th>
             <th>Цена</th>
-            <th>ЦВес</th>
+            <th>Вес</th>
 
             </thead>
-            <%--<c:forEach var="menu" items="${list}">--%>
+            <%--@elvariable id="list" type="java.util.List<ua.com.e2k.Menu>"--%>
+            <c:forEach var="menu" items="${list}">
                 <tr>
                     <td>${menu.id}</td>
                     <td>${menu.name}</td>
@@ -39,10 +41,25 @@
                     <td>${menu.weight}</td>
 
                 </tr>
-            <%--</c:forEach>--%>
+            </c:forEach>
 
         </table>
         <a class="btn btn-primary" href="\">На главную</a>
+        <a href=«#myModal»role=«button»class=«btn»data-toggle=«modal»>Добавить</a>
+
+        <div class=«modal»id=«myModal»tabindex=«-1″role=«dialog»aria-labelledby=«myModalLabel»aria-hidden=«true»>
+        <div class=«modal-header»>
+        <button type=«button»class=«close»data-dismiss=«modal»aria-hidden=«true»>?</button>
+        <h3 id=«myModalLabel»>Заголовок модального элемента</h3>
+    </div>
+    <div class=«modal-body»>
+    <p>Некое изящное тело…</p>
+</div>
+<div class=«modal-footer»>
+<button class=«btn»data-dismiss=«modal»aria-hidden=«true»>Закрыть</button>
+<button class=«btn btn-primary»>Сохранить изменения</button>
+</div>
+</div>
 
 
     </div>

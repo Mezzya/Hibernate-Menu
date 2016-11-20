@@ -27,6 +27,10 @@ public class Menu {
         this.discount = discount;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
