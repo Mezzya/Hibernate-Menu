@@ -49,9 +49,8 @@ public class FilterServlet extends HttpServlet {
                 if (!fromStr.equals("")&&(!toStr.equals("")))
                 {
 //                    От и до
-                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
-                    int to = Integer.parseInt(fromStr);
-                    int from = Integer.parseInt(toStr);
+                    int to = Integer.parseInt(toStr);
+                    int from = Integer.parseInt(fromStr);
                     req.setAttribute("list",menuDAO.getMenuFromTo(from, to));
                     req.getRequestDispatcher("/menu.jsp").forward(req, resp);
                     return;

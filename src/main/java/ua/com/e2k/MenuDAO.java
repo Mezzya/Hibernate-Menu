@@ -74,6 +74,7 @@ public class MenuDAO {
     public List<Menu> getMenuFromTo(int from, int to)
     {
         em = emf.createEntityManager();
+
         List<Menu> list = new ArrayList<Menu>();
         em.getTransaction().begin();
         list = em.createNamedQuery("findAllFromTo",Menu.class)
@@ -81,11 +82,6 @@ public class MenuDAO {
                 .setParameter("to", to)
                 .getResultList();
         em.close();
-        System.out.println(list);
-        for (Menu menu: list) {
-            System.out.println(menu);
-
-        }
         return list;
     }
 
