@@ -1,13 +1,37 @@
 package ua.com.e2k;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by User on 16.11.2016.
  */
 @Entity
+@NamedQueries(value = {
+        @NamedQuery(
+                name="findAllFrom",
+                query="SELECT menu FROM Menu menu WHERE menu.price > :from"
+        ),
+        @NamedQuery(
+                name="findAllTo",
+                query="SELECT menu FROM Menu menu WHERE menu.price < :to"
+        ),
+        @NamedQuery(
+                name="findAllFromTo",
+                query="SELECT menu FROM Menu menu WHERE menu.price BETWEEN :from AND :to"
+        ),
+        @NamedQuery(
+                name="findAllDiscount",
+                query="SELECT menu FROM Menu menu WHERE menu.discount = :discount"
+        ),
+
+
+
+
+})
+
+
+
+
 public class Menu {
     @Id
     @GeneratedValue
@@ -20,6 +44,8 @@ public class Menu {
     public Menu() {
     }
 
+
+
     public Menu(String name, int price, int weight, boolean discount) {
         this.name = name;
         this.price = price;
@@ -29,6 +55,10 @@ public class Menu {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

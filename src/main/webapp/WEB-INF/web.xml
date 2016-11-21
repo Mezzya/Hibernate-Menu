@@ -17,5 +17,35 @@
   <servlet-mapping>
     <servlet-name>ViewMenu</servlet-name>
     <url-pattern>/menu</url-pattern>
+    
+    
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddMenu</servlet-name>
+    <servlet-class>ua.com.e2k.AddMenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddMenu</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DellMenu</servlet-name>
+    <servlet-class>ua.com.e2k.DelMenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DellMenu</servlet-name>
+    <url-pattern>/del</url-pattern>
+
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FilterMenu</servlet-name>
+    <servlet-class>ua.com.e2k.FilterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilterMenu</servlet-name>
+    <url-pattern>/filter</url-pattern>
+
+  </servlet-mapping>
+
 </web-app>
