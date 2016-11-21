@@ -22,6 +22,8 @@ public class ViewMenuServlet extends HttpServlet {
 
 
         req.setAttribute("list", menuDAO.getAllMenu());
+        req.setAttribute("basket",Basket.getList());
+        req.setAttribute("allWeight", Basket.getAllWeight());
 
         req.getRequestDispatcher("/menu.jsp").forward(req,resp);
 

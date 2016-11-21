@@ -48,4 +48,22 @@
 
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AddBasket</servlet-name>
+    <servlet-class>ua.com.e2k.AddBasketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddBasket</servlet-name>
+    <url-pattern>/addbasket</url-pattern>
+
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DelBasket</servlet-name>
+    <servlet-class>ua.com.e2k.DellBasketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelBasket</servlet-name>
+    <url-pattern>/delbasket</url-pattern>
+
+  </servlet-mapping>
 </web-app>

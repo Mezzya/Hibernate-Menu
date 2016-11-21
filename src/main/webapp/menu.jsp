@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title>Квартирный менеджер</title>
+    <title>Ресторан prog.kiev.ua</title>
     <meta charset="utf-8"  />
     <link href="/style.css" rel="stylesheet">
 
@@ -19,16 +19,16 @@
 
 <div class="container">
     <div class="my_body">
-        <h2>Menu resstoran</h2>
+        <h2>Меню ресторана</h2>
         <p>${err}</p>
         <table class="table table-striped">
             <thead>
             <th>#</th>
             <th>Название</th>
             <th>Дисконт</th>
-            <th>Цена</th>
-            <th>Вес</th>
-            <th>Действие</th>
+            <th>Цена, грн</th>
+            <th>Вес, гр</th>
+            <th>Управление</th>
 
             </thead>
             <%--@elvariable id="list" type="java.util.List<ua.com.e2k.Menu>"--%>
@@ -37,10 +37,17 @@
                     <td>${menu.id}</td>
                     <td>${menu.name}</td>
 
-                    <td>${menu.discount}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${menu.discount}"><span class="glyphicon glyphicon-ok"></span></c:when>
+                            <c:otherwise><span class="glyphicon glyphicon-remove"></span></c:otherwise>
+                        </c:choose>
+
+
+                    </td>
                     <td>${menu.price}</td>
                     <td>${menu.weight}</td>
-                    <td><a class="btn btn-primary" href="\del?id=${menu.id}">Х</a><a class="btn btn-primary" href="\del?id=${menu.id}">+</a></td>
+                    <td><a class="btn btn-danger" href="\del?id=${menu.id}">Х</a> <a class="btn btn-success" href="\addbasket?id=${menu.id}">+</a></td>
 
                 </tr>
             </c:forEach>
@@ -52,7 +59,44 @@
         <a href="#myModal" class="btn btn-primary" data-toggle="modal">Добавить</a>
         <a href="#filterForm" class="btn btn-primary" data-toggle="modal">Фильтр</a>
 
-        <%--<button data-target="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</button>--%>
+        <br><br>
+        <h2>Корзина заказа</h2>
+        <h3>Общий вес корзины ${allWeight}</h3>
+        <p>${errb}</p>
+        <table class="table table-striped">
+            <thead>
+            <th>#</th>
+            <th>Название</th>
+            <th>Дисконт</th>
+            <th>Цена, грн</th>
+            <th>Вес, гр</th>
+            <th>Управление</th>
+
+            </thead>
+            <%--@elvariable id="list" type="java.util.List<ua.com.e2k.Menu>"--%>
+            <c:forEach var="menub" items="${basket}">
+                <tr>
+                    <td>${menub.id}</td>
+                    <td>${menub.name}</td>
+
+                    <td>
+                        <c:choose>
+                            <c:when test="${menub.discount}"><span class="glyphicon glyphicon-ok"></span></c:when>
+                            <c:otherwise><span class="glyphicon glyphicon-remove"></span></c:otherwise>
+                        </c:choose>
+
+
+                    </td>
+                    <td>${menub.price}</td>
+                    <td>${menub.weight}</td>
+                    <td><a class="btn btn-danger" href="\delbasket?id=${menub.id}">Х</a></td>
+
+                </tr>
+            </c:forEach>
+
+        </table>
+
+
 
         <!-- HTML-код модального окна -->
         <div id="myModal" class="modal fade">
@@ -65,7 +109,7 @@
                     </div>
                     <!-- Основное содержимое модального окна -->
                     <div class="modal-body">
-                        Заполните поля для добавления
+
                         <form id="add" class="form" action="/add" method="get">
                             <div class="form-group">
                                 <label for="name">Название блюда</label>
@@ -109,21 +153,31 @@
                         </div>
                         <!-- Основное содержимое модального окна -->
                         <div class="modal-body">
-                            Фильтр
+
                             <form id="filter" class="form" action="/filter" method="get">
                                 <div class="form-group">
                                     <label for="name">Стоимость от</label>
-                                    <input type="text" class="form-control" id="from" name="from" placeholder="Name">
+                                    <input type="text" class="form-control" id="from" name="from" value="${param.from}" placeholder="от">
                                 </div>
                                 <div class="form-group">
                                     <label for="price">Стоимость до </label>
-                                    <input type="text" class="form-control" id="to" name="to" placeholder="Price">
+                                    <input type="text" class="form-control" id="to" name="to" placeholder="до" value="${param.to}">
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio"<c:if test="${(param.discount) == 'all'}" > checked</c:if>  name="discount" value="all">Все
+                                    </label>
                                 </div>
 
-                                <div class="checkbox">
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" name="discont" value="true"> Только со скидкой
+                                        <input type="radio" name="discount" value="true" <c:if test="${(param.discount) == 'true'}" > checked</c:if>>Со скидкой
                                     </label>
+                                </div>
+                                <div class="radio">
+                                     <label>
+                                         <input type="radio" name="discount" value="false" <c:if test="${(param.discount) == 'false'}" > checked</c:if>>Без скидки
+                                     </label>
                                 </div>
 
 

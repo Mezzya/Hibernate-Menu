@@ -23,6 +23,18 @@ import javax.persistence.*;
                 name="findAllDiscount",
                 query="SELECT menu FROM Menu menu WHERE menu.discount = :discount"
         ),
+        @NamedQuery(
+                name="findAllFromDiscount",
+                query="SELECT menu FROM Menu menu WHERE menu.price > :from AND menu.discount = :discount "
+        ),
+        @NamedQuery(
+                name="findAllToDiscount",
+                query="SELECT menu FROM Menu menu WHERE menu.price < :to AND menu.discount = :discount"
+        ),
+        @NamedQuery(
+                name="findAllFromToDiscount",
+                query="SELECT menu FROM Menu menu WHERE (menu.price BETWEEN :from AND :to) AND menu.discount = :discount"
+        ),
 
 
 
